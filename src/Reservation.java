@@ -1,7 +1,9 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Reservation {
+    public static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     private Integer number;
     private Date chekin;
     private Date checkout;
@@ -17,11 +19,12 @@ public class Reservation {
 
 
     }
-    public long duratio(){
+    public long duration(){
         long diff = checkout.getTime() -chekin.getTime();
         return TimeUnit.DAYS.convert(diff,TimeUnit.MILLISECONDS);
 
     }
+
 
     public Integer getNumber() {
         return number;
@@ -37,6 +40,18 @@ public class Reservation {
 
     public Date getCheckout() {
         return checkout;
+    }
+    @Override
+    public String toString(){
+        return "Room:"
+                + number
+                +", check-in: "
+                + sdf.format(chekin)
+                +", check-out: "
+                +sdf.format(checkout)
+                +", "
+                +duration()
+                +" nights";
     }
 
 
