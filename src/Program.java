@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Program {
@@ -9,11 +10,15 @@ public class Program {
         System.out.print("Room Number: ");
         int number = sc.nextInt();
         System.out.print("Check-in date (dd/MM/yyyy): ");
-        String chekin = sc.next();
+        Date chekin = sdf.parse(sc.next());
         System.out.print("Check-out date (dd/MM/yyyy): ");
-        String checkout = sc.next();
-        Reservation r = new Reservation(number,sdf.parse(chekin),sdf.parse(checkout));
+        Date checkout = sdf.parse(sc.next());
+        Reservation r = new Reservation(number,chekin,checkout);
         System.out.println(r);
+
+        if(!checkout.after(chekin)){
+            System.out.println("Error");
+        }
 
 
     }
