@@ -14,6 +14,7 @@ public class Reservation {
         this.checkout = checkout;
     }
     public void updateDates(Date chekin, Date checkout){
+
         this.chekin = chekin;
         this.checkout = checkout;
 
