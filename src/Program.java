@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Program {
@@ -9,11 +10,40 @@ public class Program {
         System.out.print("Room Number: ");
         int number = sc.nextInt();
         System.out.print("Check-in date (dd/MM/yyyy): ");
-        String chekin = sc.next();
+        Date chekin = sdf.parse(sc.next());
         System.out.print("Check-out date (dd/MM/yyyy): ");
-        String checkout = sc.next();
-        Reservation r = new Reservation(number,sdf.parse(chekin),sdf.parse(checkout));
-        System.out.println(r);
+        Date checkout = sdf.parse(sc.next());
+
+
+        if(!checkout.after(chekin)){
+            System.out.println("Error in reservation: Checkout date must be after chekin date:");
+        }
+        else {
+            Reservation r = new Reservation(number,chekin,checkout);
+            System.out.println("Reservation "+r);
+            System.out.println();
+            System.out.println("Enter date to update reservation: ");
+            System.out.print("Check-in date (dd/MM/yyyy): ");
+            chekin = sdf.parse(sc.next());
+            System.out.print("Check-out date (dd/MM/yyyy): ");
+            checkout = sdf.parse(sc.next());
+            Date now = new Date();
+            if (chekin.before(now) || checkout.before(now)){
+                
+            } else if (!checkout.after(chekin)) {
+                System.out.println("Error in reservation: Checkout date must be after chekin date:");
+            }
+            else {
+                r.updateDates(chekin,checkout);
+                System.out.println("Reservation "+r);
+            }
+
+
+
+        }
+
+
+
 
 
     }
