@@ -29,7 +29,7 @@ public class Program {
             System.out.println("Invalid data format!");
         }
         catch (IllegalArgumentException e){
-            System.out.println("Error in reservation");
+            System.out.println("Error in reservation "+ e.getMessage());
         }
 
 
