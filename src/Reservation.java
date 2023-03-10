@@ -13,14 +13,14 @@ public class Reservation {
         this.chekin = chekin;
         this.checkout = checkout;
     }
-    public String updateDates(Date chekin, Date checkout){
+    public void updateDates(Date chekin, Date checkout){
         Date now = new Date();
         if (chekin.before(now) || checkout.before(now)){
-            return "Error in reservation: Reservation dates must be future dates";
+            throw  new IllegalArgumentException("reservation date for update must be future dates:");
 
         }
         if (!checkout.after(chekin)) {
-            return"Error in reservation: Checkout date must be after chekin date:";
+            throw new IllegalArgumentException("Checkout date must be after chekin date:");
         }
         this.chekin = chekin;
         this.checkout = checkout;

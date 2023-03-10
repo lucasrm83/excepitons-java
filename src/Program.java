@@ -22,11 +22,14 @@ public class Program {
             chekin = sdf.parse(sc.next());
             System.out.print("Check-out date (dd/MM/yyyy): ");
             checkout = sdf.parse(sc.next());
-            String error = r.updateDates(chekin, checkout);
+            r.updateDates(chekin, checkout);
             System.out.println("Reservation "+r);
         }
-        catch{
-
+        catch(ParseException e){
+            System.out.println("Invalid data format!");
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Error in reservation");
         }
 
 
