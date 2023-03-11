@@ -8,7 +8,10 @@ public class Reservation {
     private Date chekin;
     private Date checkout;
 
-    public Reservation(Integer number, Date chekin, Date checkout) {
+    public Reservation(Integer number, Date chekin, Date checkout) throws DomainException {
+        if (!checkout.after(chekin)) {
+            throw new DomainException("Checkout date must be after chekin date:");
+        }
         this.number = number;
         this.chekin = chekin;
         this.checkout = checkout;
