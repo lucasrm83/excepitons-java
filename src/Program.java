@@ -28,8 +28,11 @@ public class Program {
         catch(ParseException e){
             System.out.println("Invalid data format!");
         }
-        catch (IllegalArgumentException e){
+        catch (DomainException e){
             System.out.println("Error in reservation "+ e.getMessage());
+        }
+        catch (RuntimeException e){
+            System.out.println("Unexpected error");
         }
 
 

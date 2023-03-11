@@ -8,23 +8,26 @@ public class Reservation {
     private Date chekin;
     private Date checkout;
 
-    public Reservation(Integer number, Date chekin, Date checkout) {
+    public Reservation(Integer number, Date chekin, Date checkout) throws DomainException {
+        if (!checkout.after(chekin)) {
+            throw new DomainException("Checkout date must be after chekin date:");
+        }
         this.number = number;
         this.chekin = chekin;
         this.checkout = checkout;
     }
-    public void updateDates(Date chekin, Date checkout){
+    public void updateDates(Date chekin, Date checkout)throws DomainException{
         Date now = new Date();
         if (chekin.before(now) || checkout.before(now)){
-            throw  new IllegalArgumentException("reservation date for update must be future dates:");
+            throw  new DomainException("reservation date for update must be future dates:");
 
         }
         if (!checkout.after(chekin)) {
-            throw new IllegalArgumentException("Checkout date must be after chekin date:");
+            throw new DomainException("Checkout date must be after chekin date:");
         }
         this.chekin = chekin;
         this.checkout = checkout;
-        return null;
+
 
 
     }
